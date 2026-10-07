@@ -49,8 +49,9 @@ cloudfunctions/     云函数
 - 微信开发者工具导入本项目，把 `project.config.json` 中的 `touristappid` 替换成你的 AppID
 
 ### 2. 开通云开发
-- 开发者工具点击「云开发」按钮，按引导开通环境
-- 如果 `app.js` 中 `wx.cloud.init({ env: 'xxx' })` 写死了环境 ID，替换成你自己的环境 ID
+- 开发者工具点击「云开发」按钮，按引导开通环境，记下环境 ID（形如 `xxx-xxxxxxxx`）
+- 进入 `miniprogram/utils/` 目录，把 `env.example.js` **复制一份**改名为 `env.js`
+- 打开 `env.js`，把 `'your-env-id'` 替换为你自己的环境 ID
 
 ### 3. 初始化数据库（重要）
 在云开发控制台 → 数据库，新建 4 个集合，并设置权限：
