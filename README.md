@@ -1,6 +1,6 @@
 # 玻璃瓶小程序 🍾
-
-一个基于微信小程序的**玻璃瓶产品展示与管理系统**，面向酒类包装企业的产品陈列场景。
+> A ready-to-use **WeChat Mini Program template** for product showcase & management, built with native WXML/WXSS/JS and **WeChat CloudBase** (cloud functions + database). Includes an admin panel — clone, configure your env ID, and deploy in 15 minutes.
+一个开箱即用的**微信小程序产品展示源码**：分类浏览、关键词搜索、产品详情、图片上传、管理后台，基于微信云开发（CloudBase），无需自建服务器。适合作为企业产品展示、个人作品集、二次开发模板。
 
 ## ✨ 功能特性
 
