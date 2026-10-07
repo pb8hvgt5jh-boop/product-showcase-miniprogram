@@ -1,12 +1,12 @@
 const { normalizeSite } = require('./utils/site.js')
 const { isNotFound } = require('./utils/api.js')
-
+const { ENV_ID } = require('./utils/env.js')
 // 同一会话内的复用窗口；冷启动一律绕过缓存重新拉取
 const CACHE_MS = 5 * 60 * 1000
 
 App({
   onLaunch() {
-    wx.cloud.init({ env: 'cloud1-d9gfmteyg192f7bdd', traceUser: true })
+    wx.cloud.init({ env: ENV_ID, traceUser: true })
     // 冷启动强制拉一次：否则本地那份可能已过期的设置会继续被当成最新数据使用
     this.loadSettings(true)
     // 预热 openid / 管理员身份（不阻塞渲染）
