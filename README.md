@@ -1,6 +1,8 @@
-# 玻璃瓶小程序 🍾
+# 产品展示小程序（可配置管理后台）📦
 > A ready-to-use **WeChat Mini Program template** for product showcase & management, built with native WXML/WXSS/JS and **WeChat CloudBase** (cloud functions + database). Includes an admin panel — clone, configure your env ID, and deploy in 15 minutes.
-一个开箱即用的**微信小程序产品展示源码**：分类浏览、关键词搜索、产品详情、图片上传、管理后台，基于微信云开发（CloudBase），无需自建服务器。适合作为企业产品展示、个人作品集、二次开发模板。
+一个开箱即用的**微信小程序产品展示源码**：分类浏览、关键词搜索、详情页、图片上传，配套**可视化管理的后台**——管理员可在后台随时修改条目、图片和全部展示信息，无需改代码、无需重新发布。基于微信云开发（CloudBase），无需自建服务器。
+
+> 本项目已实际落地为「MA 玻璃瓶大全」（酒类包装企业的产品展示小程序），开箱即可迁移部署为任意产品展示场景。
 
 ## ✨ 功能特性
 
