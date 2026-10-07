@@ -42,7 +42,47 @@ cloudfunctions/     云函数
 2. 填入自己的 AppID，开通云开发环境
 3. 部署 `cloudfunctions` 下的两个云函数
 4. 编译运行
+## 🛠 部署指南（迁移者必看）
 
+### 1. 准备
+- 在 mp.weixin.qq.com 注册微信小程序，获取自己的 AppID
+- 微信开发者工具导入本项目，把 `project.config.json` 中的 `touristappid` 替换成你的 AppID
+
+### 2. 开通云开发
+- 开发者工具点击「云开发」按钮，按引导开通环境
+- 如果 `app.js` 中 `wx.cloud.init({ env: 'xxx' })` 写死了环境 ID，替换成你自己的环境 ID
+
+### 3. 初始化数据库（重要）
+在云开发控制台 → 数据库，新建 4 个集合，并设置权限：
+
+| 集合 | 用途 | 权限设置 |
+|---|---|---|
+| admins | 管理员白名单 | 所有用户不可读写 |
+| products | 产品数据 | 所有用户可读，仅管理端可写 |
+| categories | 分类数据 | 所有用户可读，仅管理端可写 |
+| settings | 站点配置 | 所有用户不可读写 |
+
+&gt; 权限设错会导致数据泄露或管理端写不进去。
+
+### 4. 部署云函数
+分别右键 `cloudfunctions/login` 和 `cloudfunctions/adminApi` → 「上传并部署：云端安装依赖」。
+
+### 5. 把自己设为管理员
+1. 编译运行小程序，在调试器 Console 执行：
+   ```js
+   wx.cloud.callFunction({ name: 'login' }).then(r =&gt; console.log('openid =', r.result.openid))
+   ```
+2. 复制打印出的 openid
+3. 云开发控制台 → 数据库 → `admins` 集合 → 添加记录 → 字段名填 `openid`，值粘贴刚才的 openid
+4. 重新编译，进入管理端，即可管理分类和产品
+
+### 6. 开始使用
+- **管理端**：先建分类，再添加产品（支持图片上传）
+- **用户端**：首页自动展示已上架的产品与分类
+
+## 🔐 安全说明
+- 管理权限由云函数服务端校验（`admins` 白名单），客户端无法伪造
+- `admins`、`settings` 集合请保持"所有用户不可读写"，仅云函数可访问
 ## 📌 说明
 
 - 本项目为个人学习/作品集项目
