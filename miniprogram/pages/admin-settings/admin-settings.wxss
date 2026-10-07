@@ -1,0 +1,68 @@
+.page { padding: 24rpx 24rpx 60rpx; }
+
+.card {
+  background: #141414; border: 1rpx solid #232323;
+  border-radius: 16rpx; padding: 28rpx; margin-bottom: 20rpx;
+}
+.card-h {
+  font-size: 28rpx; font-weight: 600; color: #ece7de;
+  letter-spacing: 2rpx; margin-bottom: 20rpx;
+  padding-left: 16rpx; position: relative;
+}
+.card-h::before {
+  content: ''; position: absolute; left: 0; top: 6rpx;
+  width: 4rpx; height: 24rpx; background: #d4a017; border-radius: 2rpx;
+}
+.card-h-sub { font-size: 20rpx; color: #55504a; font-weight: 400; letter-spacing: 1rpx; margin-left: 12rpx; }
+
+.hint { font-size: 20rpx; color: #55504a; margin-top: 12rpx; line-height: 1.7; letter-spacing: 1rpx; }
+
+/* 加载失败态的重试按钮 */
+.retry-btn { width: 320rpx; margin: 36rpx auto 0; }
+
+/* 图片九宫格 */
+.imgs { display: flex; flex-wrap: wrap; }
+.img-wrap { position: relative; margin: 0 16rpx 16rpx 0; }
+.img { width: 168rpx; height: 168rpx; border-radius: 12rpx; background: #1c1c1c; display: block; }
+.img.wide { width: 280rpx; height: 150rpx; }
+.img-wrap.wide { margin-bottom: 34rpx; }
+.del {
+  position: absolute; top: -12rpx; right: -12rpx;
+  width: 40rpx; height: 40rpx; border-radius: 50%;
+  background: #7a2020; color: #fff; font-size: 28rpx;
+  line-height: 36rpx; text-align: center;
+}
+.img.add {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1rpx dashed #333; background: #171717;
+}
+.add-plus { font-size: 46rpx; color: #55504a; line-height: 1; }
+.add-txt { font-size: 19rpx; color: #55504a; margin-top: 8rpx; letter-spacing: 1rpx; }
+
+.move-row { position: absolute; left: 0; right: 0; bottom: 12rpx; display: flex; justify-content: center; }
+.mv {
+  width: 50rpx; height: 36rpx; margin: 0 8rpx;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.6); border-radius: 8rpx;
+  color: #d4a017; font-size: 24rpx;
+}
+.mv.dis { color: #44403a; }
+
+/* 社交链接 */
+.soc-row {
+  display: flex; align-items: flex-start;
+  padding: 16rpx 0; border-bottom: 1rpx solid rgba(255,255,255,0.05);
+}
+.soc-fields { flex: 1; min-width: 0; }
+.soc-in { margin-bottom: 12rpx; }
+.soc-in:last-child { margin-bottom: 0; }
+.soc-del {
+  flex-shrink: 0; margin-left: 16rpx; margin-top: 6rpx;
+  padding: 12rpx 22rpx; border: 1rpx solid #4a2626; border-radius: 10rpx;
+  font-size: 22rpx; color: #c06060;
+}
+.soc-empty { font-size: 21rpx; color: #55504a; padding: 10rpx 0 20rpx; line-height: 1.7; }
+.soc-add { margin-top: 18rpx; }
+
+.save { margin-top: 10rpx; }
+.tip2 { color: #55504a; font-size: 21rpx; text-align: center; padding: 26rpx 20rpx 10rpx; line-height: 1.8; }

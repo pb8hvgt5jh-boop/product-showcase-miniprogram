@@ -1,0 +1,45 @@
+@import "/styles/icons.wxss";
+
+.page { padding: 30rpx 24rpx 60rpx; }
+
+.hd { padding: 20rpx 6rpx 40rpx; }
+.hd-t { font-size: 46rpx; font-weight: 700; color: #f5f1e9; letter-spacing: 8rpx; }
+.hd-en { font-size: 20rpx; color: rgba(212,160,23,0.5); letter-spacing: 6rpx; text-transform: uppercase; margin-top: 12rpx; }
+
+.menu {
+  display: flex; align-items: center;
+  background: #141414; border: 1rpx solid #232323;
+  border-radius: 16rpx; padding: 32rpx 28rpx; margin-bottom: 20rpx;
+}
+.m-ic {
+  width: 80rpx; height: 80rpx; border-radius: 14rpx;
+  background: rgba(212,160,23,0.07);
+  border: 1rpx solid rgba(212,160,23,0.2);
+  display: flex; align-items: center; justify-content: center;
+  margin-right: 24rpx; flex-shrink: 0;
+}
+.m-ic .ic { width: 42rpx; height: 42rpx; }
+.m-txt { flex: 1; min-width: 0; }
+.m-t { font-size: 30rpx; font-weight: 600; color: #ece7de; letter-spacing: 2rpx; }
+.m-s { font-size: 22rpx; color: #7d776e; margin-top: 8rpx; letter-spacing: 1rpx; }
+.chev {
+  width: 16rpx; height: 16rpx; flex-shrink: 0; margin-left: 12rpx;
+  border-top: 2rpx solid #55504a; border-right: 2rpx solid #55504a;
+  transform: rotate(45deg);
+}
+
+.oid {
+  margin-top: 34rpx; padding: 26rpx 28rpx;
+  background: #101010; border: 1rpx dashed #2a2a2a; border-radius: 14rpx;
+}
+.oid-k { font-size: 21rpx; color: #7d776e; letter-spacing: 1rpx; }
+.oid-row { display: flex; align-items: center; margin-top: 16rpx; }
+.oid-v { flex: 1; min-width: 0; font-size: 22rpx; color: #b8912f; word-break: break-all; line-height: 1.5; }
+.oid-ic { width: 32rpx; height: 32rpx; margin-left: 16rpx; flex-shrink: 0; }
+
+.back {
+  margin-top: 30rpx; text-align: center;
+  padding: 24rpx 0; border-radius: 12rpx;
+  border: 1rpx solid #2e2e2e; color: #b8b2a8; font-size: 27rpx;
+}
+.tip { color: #55504a; font-size: 21rpx; text-align: center; margin-top: 40rpx; line-height: 1.9; letter-spacing: 1rpx; }

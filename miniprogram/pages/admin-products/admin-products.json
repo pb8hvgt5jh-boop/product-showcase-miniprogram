@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "产品管理",
+  "usingComponents": {
+    "ma-dialog": "/components/ma-dialog/index"
+  }
+}

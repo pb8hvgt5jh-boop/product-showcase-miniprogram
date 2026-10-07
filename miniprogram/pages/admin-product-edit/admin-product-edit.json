@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "编辑产品",
+  "usingComponents": {
+    "ma-dialog": "/components/ma-dialog/index"
+  }
+}

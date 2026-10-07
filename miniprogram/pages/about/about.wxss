@@ -1,0 +1,125 @@
+@import "/styles/icons.wxss";
+
+.page { padding-bottom: 20rpx; }
+
+/* ---------- 品牌区 ---------- */
+.brand {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 100rpx 40rpx 0;
+}
+.logo { width: 180rpx; height: 180rpx; border-radius: 32rpx; }
+.logo-ph {
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(120% 120% at 30% 20%, #26200f 0%, #100e08 70%);
+  border: 1rpx solid rgba(212,160,23,0.32);
+  color: #d4a017; font-size: 64rpx; font-weight: 700; letter-spacing: 3rpx;
+}
+.brand-name {
+  font-size: 48rpx; font-weight: 700; color: #f5f1e9;
+  letter-spacing: 8rpx; text-indent: 8rpx;
+  margin-top: 34rpx; text-align: center;
+}
+.brand-region {
+  display: flex; align-items: center;
+  margin-top: 28rpx; font-size: 26rpx; color: #8b857c; letter-spacing: 2rpx;
+}
+.brand-region .pin { width: 28rpx; height: 28rpx; margin-right: 12rpx; }
+.dim-txt { color: #55504a; font-size: 25rpx; letter-spacing: 2rpx; }
+
+/* 用户 ID：辅助说明级小号灰字，不抢品牌名的视觉重心 */
+.brand-id {
+  max-width: 100%;
+  margin-top: 18rpx;
+  padding: 6rpx 20rpx;
+  text-align: center;
+}
+.brand-id-txt {
+  font-size: 22rpx; color: #55504a; letter-spacing: 1rpx;
+  line-height: 1.5; word-break: break-all;
+}
+
+/* ---------- 语录 ---------- */
+.quote-wrap { position: relative; margin: 50rpx 64rpx 40rpx; padding: 24rpx 0; }
+.q-mark {
+  position: absolute; font-size: 130rpx; line-height: 1;
+  color: rgba(212,160,23,0.2); font-family: Georgia, "Songti SC", serif;
+}
+.q-open { left: -18rpx; top: -26rpx; }
+.q-close { right: -18rpx; bottom: -44rpx; }
+.quote {
+  text-align: center; font-size: 34rpx; color: #b8b2a8;
+  line-height: 1.9; letter-spacing: 3rpx;
+}
+
+/* ---------- 四个圆形按钮 ----------
+   space-between + 30rpx 左右内边距：
+   4 × 120rpx 圆 + 3 × 70rpx 间距 = 690rpx，正好落在 750rpx 内不溢出 */
+.acts {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 50rpx 30rpx;
+}
+.act {
+  width: 120rpx; margin: 0; padding: 0; background: none; border: none; line-height: 1;
+  display: flex; flex-direction: column; align-items: center;
+  flex-shrink: 0;
+}
+.act-btn::after { border: none; }
+.act-ring {
+  width: 120rpx; height: 120rpx; border-radius: 50%;
+  background: #141414;
+  border: 1rpx solid rgba(212,160,23,0.26);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4rpx 18rpx rgba(0,0,0,0.45);
+}
+.act-ic { width: 52rpx; height: 52rpx; }
+.act-txt { font-size: 24rpx; color: #8b857c; margin-top: 18rpx; letter-spacing: 2rpx; }
+
+/* ---------- 品牌介绍长图 ---------- */
+.intro {
+  margin: 50rpx 24rpx 0;
+  border-radius: 16rpx; overflow: hidden;
+  border: 1rpx solid #232323;
+  background: #141414;
+}
+.intro-img { width: 100%; display: block; }
+
+/* ---------- 联系信息卡片 ---------- */
+.contact {
+  margin: 40rpx 24rpx 0;
+  background: #141414;
+  border: 1rpx solid #232323;
+  border-radius: 16rpx;
+  padding: 36rpx;
+}
+.c-title {
+  font-size: 30rpx; font-weight: 600; color: #ece7de;
+  letter-spacing: 3rpx; margin-bottom: 14rpx;
+  padding-left: 18rpx; position: relative;
+}
+.c-title::before {
+  content: ''; position: absolute; left: 0; top: 6rpx;
+  width: 4rpx; height: 28rpx; background: #d4a017; border-radius: 2rpx;
+}
+.c-row {
+  display: flex; align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid rgba(255,255,255,0.05);
+}
+.c-row:last-child { border-bottom: none; padding-bottom: 6rpx; }
+.c-ic { width: 34rpx; height: 34rpx; margin-right: 20rpx; flex-shrink: 0; }
+.c-k { font-size: 27rpx; color: #7d776e; width: 96rpx; flex-shrink: 0; letter-spacing: 2rpx; }
+.c-v { font-size: 30rpx; color: #d8d2c8; flex: 1; }
+
+/* ---------- 社交链接 ---------- */
+.social {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  padding: 50rpx 40rpx 20rpx;
+}
+.soc { display: flex; flex-direction: column; align-items: center; margin: 0 22rpx 26rpx; }
+.soc-ring {
+  width: 88rpx; height: 88rpx; border-radius: 50%;
+  background: #141414; border: 1rpx solid rgba(212,160,23,0.22);
+  display: flex; align-items: center; justify-content: center;
+  color: #c9a13a; font-size: 24rpx; letter-spacing: 1rpx;
+}
+.soc-txt { font-size: 20rpx; color: #7d776e; margin-top: 12rpx; letter-spacing: 1rpx; }

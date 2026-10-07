@@ -1,0 +1,94 @@
+.page { padding-bottom: 20rpx; }
+
+/* ---------- 顶部大图轮播（通栏贴边，无左右边距） ---------- */
+.hero {
+  position: relative; width: 100%; height: 460rpx;
+  margin: 0; padding: 0; background: #111; overflow: hidden;
+}
+.hero-sw { width: 100%; height: 460rpx; margin: 0; padding: 0; }
+.hero-img { width: 100%; height: 460rpx; display: block; margin: 0; padding: 0; }
+.hero-ph {
+  width: 100%; height: 460rpx;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: radial-gradient(120% 90% at 50% 20%, #1d1a14 0%, #0d0d0d 62%);
+  border-bottom: 1rpx solid rgba(212,160,23,0.12);
+}
+
+/* 自绘圆点指示器：8rpx 直径 · 8rpx 间距 · 金色高亮 · 轮播底部内侧 */
+.hero-dots {
+  position: absolute; left: 0; right: 0; bottom: 20rpx;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.hd-dot {
+  width: 8rpx; height: 8rpx; border-radius: 50%;
+  margin: 0 4rpx;
+  background: rgba(255,255,255,0.34);
+  transition: background .2s;
+}
+.hd-dot.on { background: #d4a017; }
+.hero-ph-ring {
+  width: 108rpx; height: 108rpx; border-radius: 50%;
+  border: 1rpx solid rgba(212,160,23,0.45);
+  color: #d4a017; font-size: 34rpx; letter-spacing: 3rpx;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 26rpx;
+}
+.hero-ph-t { font-size: 32rpx; color: #cfc8bd; letter-spacing: 6rpx; }
+.hero-ph-s { font-size: 19rpx; color: #55504a; letter-spacing: 6rpx; margin-top: 14rpx; }
+
+/* 悬浮搜索入口 */
+.hero-search {
+  position: absolute; right: 28rpx; top: 28rpx;
+  width: 68rpx; height: 68rpx; border-radius: 50%;
+  background: rgba(10,10,10,0.5);
+  border: 1rpx solid rgba(212,160,23,0.34);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-search .mag { transform: translate(-3rpx, -3rpx); }
+
+/* 首个区块（瓶型）与轮播之间留出呼吸感 */
+.sec-first { margin-top: 40rpx; }
+
+/* ---------- 分类通栏大卡片 ---------- */
+.cat-loading { padding: 80rpx 0; text-align: center; }
+.cats { padding: 0 24rpx; }
+.cat {
+  position: relative;
+  width: 100%; height: 400rpx;
+  border-radius: 14rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+  background: #141414;
+  border: 1rpx solid #232323;
+}
+.cat-img { width: 100%; height: 400rpx; display: block; }
+.cat-ph {
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(100% 80% at 50% 30%, #1c1913 0%, #0f0f0f 70%);
+}
+.cat-ph-ring {
+  width: 120rpx; height: 120rpx; border-radius: 50%;
+  border: 1rpx solid rgba(212,160,23,0.28);
+  color: rgba(212,160,23,0.55); font-size: 36rpx; letter-spacing: 4rpx;
+  display: flex; align-items: center; justify-content: center;
+}
+.cat-ov {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.16) 42%, rgba(0,0,0,0.62) 100%);
+}
+.cat-txt {
+  position: absolute; left: 0; right: 0; top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+.cat-name {
+  font-size: 46rpx; font-weight: 700; color: #fff;
+  letter-spacing: 8rpx; text-indent: 8rpx;
+  text-shadow: 0 4rpx 24rpx rgba(0,0,0,0.6);
+}
+.cat-en {
+  font-size: 19rpx; color: rgba(255,255,255,0.62);
+  letter-spacing: 8rpx; text-transform: uppercase; margin-top: 14rpx;
+  text-indent: 8rpx;
+}

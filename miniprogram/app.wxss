@@ -1,0 +1,207 @@
+/* ============================================================
+   MA玻璃瓶大全 · v3 黑金设计系统
+   底色：深黑 / 炭灰      点缀：香槟金 #d4a017
+   三级字阶：超大标题 / 正文 / 辅助说明
+   ============================================================ */
+
+page {
+  background: #0a0a0a;
+  color: #ece7de;
+  font-size: 28rpx;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+}
+
+view, text, input, textarea, button { box-sizing: border-box; }
+
+/* ---------- 三级字阶 ---------- */
+.t-hero { font-size: 46rpx; font-weight: 700; letter-spacing: 8rpx; color: #f5f1e9; }
+.t-title { font-size: 34rpx; font-weight: 600; letter-spacing: 2rpx; color: #ece7de; }
+.t-body { font-size: 28rpx; color: #d8d2c8; }
+.t-aux { font-size: 22rpx; color: #7d776e; letter-spacing: 1rpx; }
+.t-en { font-size: 20rpx; color: #7d776e; letter-spacing: 4rpx; text-transform: uppercase; }
+
+/* ---------- 色 ---------- */
+.gold { color: #d4a017; }
+.gold-soft { color: #b8912f; }
+.muted { color: #7d776e; }
+.dim { color: #5c574f; }
+
+/* ---------- 区块标题（中文大标题 + 英文水印副标题）---------- */
+.sec {
+  position: relative;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.sec-en {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 74rpx;
+  text-align: center;
+  font-size: 44rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  color: rgba(212, 160, 23, 0.13);
+  white-space: nowrap;
+}
+.sec-zh {
+  position: relative;
+  font-size: 48rpx;
+  font-weight: 700;
+  letter-spacing: 12rpx;
+  color: #f5f1e9;
+  text-indent: 12rpx;
+}
+.sec-line {
+  position: absolute;
+  bottom: 26rpx;
+  left: 50%;
+  width: 48rpx;
+  height: 2rpx;
+  margin-left: -24rpx;
+  background: linear-gradient(90deg, transparent, rgba(212,160,23,.8), transparent);
+}
+
+/* ---------- 卡片 / 分割线 ---------- */
+.card {
+  background: #141414;
+  border: 1rpx solid #242424;
+  border-radius: 16rpx;
+}
+.hairline { height: 1rpx; background: rgba(255,255,255,0.06); }
+
+/* ---------- 产品双列网格 ---------- */
+.p-grid { display: flex; flex-wrap: wrap; padding: 0 12rpx; }
+.p-card { width: 50%; padding: 8rpx; }
+.p-inner {
+  background: #141414;
+  border: 1rpx solid #232323;
+  border-radius: 14rpx;
+  overflow: hidden;
+}
+.p-img { width: 100%; height: 340rpx; display: block; background: #171717; }
+.p-ph {
+  display: flex; align-items: center; justify-content: center;
+  background: #171717;
+  border-bottom: 1rpx solid #202020;
+}
+.p-ph-txt { font-size: 22rpx; color: #4e4a44; letter-spacing: 2rpx; }
+.p-body { padding: 16rpx 18rpx 20rpx; }
+.p-name {
+  font-size: 27rpx; font-weight: 600; color: #ece7de; line-height: 1.42;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  overflow: hidden; min-height: 76rpx;
+}
+.p-tags { margin-top: 10rpx; }
+.p-tags .tg {
+  font-size: 21rpx; color: #a8862c; line-height: 1.5;
+  margin-right: 8rpx; word-break: break-all;
+}
+.p-meta {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-top: 12rpx; padding-top: 12rpx; border-top: 1rpx solid rgba(255,255,255,0.05);
+}
+.p-price { font-size: 30rpx; font-weight: 700; color: #d4a017; letter-spacing: 1rpx; }
+.p-sales { font-size: 20rpx; color: #6b665f; }
+
+/* ---------- 按钮 ---------- */
+.btn-gold {
+  background: linear-gradient(135deg, #d9ab2c 0%, #c2900f 55%, #a87a0c 100%);
+  color: #17130a; font-size: 29rpx; font-weight: 700; letter-spacing: 4rpx;
+  border-radius: 12rpx; text-align: center; padding: 24rpx 0;
+  box-shadow: 0 6rpx 20rpx rgba(212,160,23,0.16);
+}
+.btn-gold.disabled { opacity: .5; }
+.btn-ghost {
+  border: 1rpx solid rgba(212,160,23,0.34);
+  color: #d4a017; font-size: 28rpx; letter-spacing: 2rpx;
+  border-radius: 12rpx; text-align: center; padding: 22rpx 0;
+  background: rgba(212,160,23,0.04);
+}
+.btn-plain {
+  border: 1rpx solid #2e2e2e; color: #b8b2a8;
+  border-radius: 12rpx; text-align: center; padding: 20rpx 0; font-size: 27rpx;
+}
+.btn-danger {
+  border: 1rpx solid #5a2a2a; color: #c06060; background: rgba(160,48,48,0.07);
+  border-radius: 12rpx; text-align: center; padding: 20rpx 0; font-size: 27rpx;
+}
+
+/* ---------- 表单（暗金定制，不用系统默认外观）---------- */
+.field {
+  background: #1a1a1a;
+  border: 1rpx solid #262626;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: #ece7de;
+  min-height: 84rpx;
+  display: flex;
+  align-items: center;
+}
+.field-area { min-height: 200rpx; align-items: flex-start; line-height: 1.7; }
+.ph-color { color: #55504a; }
+.label { font-size: 24rpx; color: #8b857c; letter-spacing: 1rpx; margin: 26rpx 0 12rpx; }
+.label:first-child { margin-top: 0; }
+
+/* 自定义开关（替代原生 switch） */
+.toggle {
+  width: 92rpx; height: 52rpx; border-radius: 26rpx;
+  background: #262626; border: 1rpx solid #333;
+  position: relative; transition: background .2s;
+}
+.toggle .knob {
+  position: absolute; top: 5rpx; left: 5rpx;
+  width: 40rpx; height: 40rpx; border-radius: 50%;
+  background: #6b665f; transition: all .2s;
+}
+.toggle.on { background: rgba(212,160,23,0.22); border-color: rgba(212,160,23,0.5); }
+.toggle.on .knob { left: 45rpx; background: #d4a017; }
+
+/* ---------- 状态：加载中 / 空数据 ---------- */
+.state { padding: 110rpx 40rpx; text-align: center; }
+.spinner {
+  width: 46rpx; height: 46rpx; margin: 0 auto 24rpx;
+  border: 2rpx solid rgba(212,160,23,0.16);
+  border-top-color: #d4a017;
+  border-radius: 50%;
+  animation: ma-spin .9s linear infinite;
+}
+@keyframes ma-spin { to { transform: rotate(360deg); } }
+.state-txt { font-size: 24rpx; color: #6b665f; letter-spacing: 2rpx; }
+.empty-mark {
+  width: 96rpx; height: 96rpx; margin: 0 auto 26rpx;
+  border: 1rpx solid rgba(212,160,23,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30rpx; color: rgba(212,160,23,0.5); letter-spacing: 2rpx;
+}
+.empty-title { font-size: 27rpx; color: #8b857c; letter-spacing: 2rpx; }
+.empty-sub { font-size: 22rpx; color: #55504a; margin-top: 12rpx; letter-spacing: 1rpx; }
+
+/* ---------- 纯 CSS 放大镜（代替 emoji，保证线条风格统一）---------- */
+.mag { width: 26rpx; height: 26rpx; border: 3rpx solid #d4a017; border-radius: 50%; position: relative; }
+.mag::after {
+  content: ''; position: absolute; right: -10rpx; bottom: -10rpx;
+  width: 14rpx; height: 3rpx; background: #d4a017; transform: rotate(45deg);
+}
+.mag.dim { border-color: #8b857c; }
+.mag.dim::after { background: #8b857c; }
+
+/* ---------- 底部安全区 ---------- */
+.safe-bottom { height: env(safe-area-inset-bottom); }
+
+/* ---------- 页脚 ---------- */
+.foot {
+  text-align: center; color: #3d3a35; font-size: 21rpx;
+  letter-spacing: 3rpx; padding: 60rpx 0 70rpx;
+}
+
+/* ---------- 通用行 ---------- */
+.row { display: flex; align-items: center; }
+.grow { flex: 1; min-width: 0; }

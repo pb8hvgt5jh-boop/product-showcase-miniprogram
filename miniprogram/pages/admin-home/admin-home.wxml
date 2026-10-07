@@ -1,0 +1,45 @@
+<view class="page">
+
+  <view class="hd">
+    <view class="hd-t">管理后台</view>
+    <view class="hd-en">Admin Console</view>
+  </view>
+
+  <view class="menu" bindtap="goProducts">
+    <view class="m-ic"><view class="ic ic-box"></view></view>
+    <view class="m-txt">
+      <view class="m-t">产品管理</view>
+      <view class="m-s">新增 / 编辑全字段 / 上下架 / 删除</view>
+    </view>
+    <view class="chev"></view>
+  </view>
+
+  <view class="menu" bindtap="goCategories">
+    <view class="m-ic"><view class="ic ic-layers"></view></view>
+    <view class="m-txt">
+      <view class="m-t">分类管理</view>
+      <view class="m-s">增删 / 改名 / 封面图 / 排序 / 显示隐藏</view>
+    </view>
+    <view class="chev"></view>
+  </view>
+
+  <view class="menu" bindtap="goSettings">
+    <view class="m-ic"><view class="ic ic-setting"></view></view>
+    <view class="m-txt">
+      <view class="m-t">页面设置</view>
+      <view class="m-s">轮播图 / 品牌 / 联系方式 / 语录 / 长图 / 社交</view>
+    </view>
+    <view class="chev"></view>
+  </view>
+
+  <view class="oid">
+    <view class="oid-k">我的 openid（用于加入 admins 白名单）</view>
+    <view class="oid-row" bindtap="copyOpenid">
+      <text class="oid-v">{{openid || '获取中…'}}</text>
+      <view class="ic ic-copy oid-ic"></view>
+    </view>
+  </view>
+
+  <view class="back" bindtap="backHome">返回小程序首页</view>
+  <view class="tip">所有修改保存后即时生效，客户刷新即可看到，无需重新提交审核。</view>
+</view>

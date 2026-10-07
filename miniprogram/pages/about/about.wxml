@@ -1,0 +1,95 @@
+<!-- 加载中 -->
+<view class="state" wx:if="{{loading}}">
+  <view class="spinner"></view>
+  <view class="state-txt">加载中</view>
+</view>
+
+<view class="page" wx:else>
+
+  <!-- ============ 品牌区（连点品牌名 5 次进后台） ============ -->
+  <view class="brand" bindtap="onBrandTap">
+    <image class="logo" src="{{settings.logo}}" mode="aspectFit" wx:if="{{settings.hasLogo}}" />
+    <view class="logo logo-ph" wx:else>MA</view>
+    <view class="brand-name">{{settings.siteName || 'MA玻璃瓶大全'}}</view>
+    <view class="brand-region" wx:if="{{settings.contact.region}}">
+      <view class="ic ic-loc pin"></view>
+      <text>{{settings.contact.region}}</text>
+    </view>
+    <view class="brand-region" wx:else>
+      <text class="dim-txt">暂未设置所在地区</text>
+    </view>
+
+    <!-- 用户 ID：所有访客可见，点击复制。
+         用 catchtap 阻断冒泡，否则点这一行会同时累计品牌区的"连点 5 次进后台"计数 -->
+    <view class="brand-id" catchtap="copyOpenid">
+      <text class="brand-id-txt">ID：{{openid || '获取中…'}}（点击复制）</text>
+    </view>
+  </view>
+
+  <!-- ============ 品牌语录 ============ -->
+  <view class="quote-wrap" wx:if="{{settings.hasQuote}}">
+    <view class="q-mark q-open">“</view>
+    <view class="quote">{{settings.about.quote}}</view>
+    <view class="q-mark q-close">”</view>
+  </view>
+
+  <!-- ============ 四个圆形按钮 ============ -->
+  <view class="acts">
+    <view class="act" bindtap="callPhone">
+      <view class="act-ring"><view class="ic ic-phone act-ic"></view></view>
+      <text class="act-txt">电话</text>
+    </view>
+    <view class="act" bindtap="copyWechat">
+      <view class="act-ring"><view class="ic ic-wechat act-ic"></view></view>
+      <text class="act-txt">微信</text>
+    </view>
+    <view class="act" bindtap="showAddress">
+      <view class="act-ring"><view class="ic ic-loc act-ic"></view></view>
+      <text class="act-txt">地址</text>
+    </view>
+    <button class="act act-btn" open-type="share">
+      <view class="act-ring"><view class="ic ic-share act-ic"></view></view>
+      <text class="act-txt">分享</text>
+    </button>
+  </view>
+
+  <!-- ============ 品牌介绍长图 ============ -->
+  <view class="intro" wx:if="{{settings.hasIntro}}">
+    <image class="intro-img" src="{{settings.about.introImage}}" mode="widthFix" bindtap="previewIntro" />
+  </view>
+
+  <!-- ============ 联系信息卡片 ============ -->
+  <view class="contact" wx:if="{{settings.hasContact}}">
+    <view class="c-title">联系我们</view>
+    <view class="c-row" wx:if="{{settings.contact.wechat}}">
+      <view class="ic ic-wechat c-ic"></view>
+      <text class="c-k">微信</text>
+      <text class="c-v">{{settings.contact.wechat}}</text>
+    </view>
+    <view class="c-row" wx:if="{{settings.contact.phone}}">
+      <view class="ic ic-phone c-ic"></view>
+      <text class="c-k">电话</text>
+      <text class="c-v">{{settings.contact.phone}}</text>
+    </view>
+    <view class="c-row" wx:if="{{settings.contact.region}}">
+      <view class="ic ic-loc c-ic"></view>
+      <text class="c-k">地区</text>
+      <text class="c-v">{{settings.contact.region}}</text>
+    </view>
+    <view class="c-row" wx:if="{{settings.contact.address}}">
+      <view class="ic ic-loc c-ic"></view>
+      <text class="c-k">地址</text>
+      <text class="c-v">{{settings.contact.address}}</text>
+    </view>
+  </view>
+
+  <!-- ============ 社交链接（后台可增删） ============ -->
+  <view class="social" wx:if="{{settings.hasSocial}}">
+    <view class="soc" wx:for="{{settings.socialLinks}}" wx:key="key" bindtap="copySocial" data-value="{{item.value}}">
+      <view class="soc-ring">{{item.short}}</view>
+      <text class="soc-txt">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="foot">{{settings.siteName || 'MA玻璃瓶大全'}} · 产品信息目录</view>
+</view>

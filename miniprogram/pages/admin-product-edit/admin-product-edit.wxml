@@ -1,0 +1,86 @@
+<view class="page">
+
+  <!-- 基本信息 -->
+  <view class="card">
+    <view class="card-h">基本信息</view>
+
+    <view class="label">产品名称 *</view>
+    <input class="field" value="{{form.name}}" placeholder="如：26条纹瓶+盖子"
+           placeholder-class="ph-color" data-field="name" bindinput="onField" />
+
+    <view class="label">分类</view>
+    <view class="field picker" bindtap="openSheet">
+      <text class="{{form.category ? '' : 'ph-text'}}">{{form.category || '点击选择分类'}}</text>
+      <view class="chev down"></view>
+    </view>
+
+    <view class="label">标签（用逗号分隔，显示在名称下方）</view>
+    <input class="field" value="{{form.tags}}" placeholder="如：透明酒瓶，白卡盒，现货"
+           placeholder-class="ph-color" data-field="tags" bindinput="onField" />
+  </view>
+
+  <!-- 图片 -->
+  <view class="card">
+    <view class="card-h">产品图片 <text class="card-h-sub">首图作为列表封面 · 最多 9 张</text></view>
+    <view class="imgs">
+      <view class="img-wrap" wx:for="{{images}}" wx:key="*this">
+        <image class="img" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}" />
+        <view class="del" bindtap="removeImage" data-index="{{index}}">×</view>
+        <view class="cover-tag" wx:if="{{index === 0}}">封面</view>
+        <view class="set-cover" wx:else bindtap="setCover" data-index="{{index}}">设封面</view>
+      </view>
+      <view class="img add" wx:if="{{images.length < 9}}" bindtap="addImages">
+        <text class="add-plus">+</text>
+        <text class="add-txt">上传图片</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 描述 -->
+  <view class="card">
+    <view class="card-h">产品描述</view>
+    <textarea class="field field-area" value="{{form.description}}"
+              placeholder="容量、尺寸、材质、适用场景等"
+              placeholder-class="ph-color" data-field="description" bindinput="onField" />
+  </view>
+
+  <!-- 上架状态 -->
+  <view class="card">
+    <view class="row">
+      <view class="grow">
+        <view class="card-h no-mb">上架状态</view>
+        <view class="row-sub">{{form.status ? '客户可在前台看到该产品' : '前台隐藏，仅后台可见'}}</view>
+      </view>
+      <view class="toggle {{form.status ? 'on' : ''}}" bindtap="toggleStatus">
+        <view class="knob"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="btn-gold save {{saving ? 'disabled' : ''}}" bindtap="save">{{saving ? '保存中…' : '保存'}}</view>
+  <view class="btn-danger del-btn" wx:if="{{isEdit}}" bindtap="del">删除该产品</view>
+
+  <!-- 分类选择弹层 -->
+  <view class="mask" wx:if="{{sheet}}" bindtap="closeSheet">
+    <view class="sheet" catchtap="noop">
+      <view class="sheet-hd">选择分类</view>
+      <scroll-view scroll-y class="sheet-body">
+        <view class="sheet-item {{!form.category ? 'on' : ''}}" bindtap="pickCat" data-name="">不指定分类</view>
+        <view class="sheet-item {{item === form.category ? 'on' : ''}}"
+              wx:for="{{cats}}" wx:key="*this" bindtap="pickCat" data-name="{{item}}">{{item}}</view>
+        <view class="sheet-empty" wx:if="{{!cats.length}}">还没有分类，请先到「分类管理」添加</view>
+      </scroll-view>
+      <view class="sheet-cancel" bindtap="closeSheet">取消</view>
+    </view>
+  </view>
+
+  <ma-dialog
+    show="{{dlg.show}}"
+    mode="{{dlg.mode}}"
+    title="{{dlg.title}}"
+    content="{{dlg.content}}"
+    confirmText="{{dlg.confirmText}}"
+    danger="{{dlg.danger}}"
+    bind:confirm="onDlgConfirm"
+    bind:cancel="onDlgCancel" />
+</view>

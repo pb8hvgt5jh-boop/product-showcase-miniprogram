@@ -1,0 +1,51 @@
+.ma-mask {
+  position: fixed; left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 999;
+}
+.ma-dialog {
+  width: 580rpx;
+  background: #161616;
+  border: 1rpx solid #2a2a2a;
+  border-radius: 20rpx;
+  padding: 44rpx 36rpx 30rpx;
+  box-shadow: 0 20rpx 60rpx rgba(0,0,0,0.6);
+}
+.ma-title {
+  font-size: 32rpx; font-weight: 700; color: #f5f1e9;
+  letter-spacing: 3rpx; text-align: center;
+}
+.ma-content {
+  font-size: 25rpx; color: #a8a29a; line-height: 1.8;
+  margin-top: 22rpx; text-align: center;
+}
+.ma-input {
+  margin-top: 30rpx;
+  background: #1c1c1c;
+  border: 1rpx solid #2e2e2e;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: #ece7de;
+  height: 84rpx;
+}
+.ma-ph { color: #55504a; }
+
+.ma-btns { display: flex; margin-top: 40rpx; }
+.ma-btn {
+  flex: 1; text-align: center; padding: 22rpx 0;
+  font-size: 28rpx; color: #b8b2a8; letter-spacing: 2rpx;
+  border: 1rpx solid #2e2e2e; border-radius: 12rpx;
+  margin: 0 10rpx;
+}
+.ma-btn.ma-primary {
+  background: linear-gradient(135deg, #d9ab2c 0%, #c2900f 55%, #a87a0c 100%);
+  border-color: transparent;
+  color: #17130a; font-weight: 700;
+}
+.ma-btn.ma-primary.ma-danger {
+  background: none;
+  border: 1rpx solid #5a2a2a;
+  color: #c06060;
+}

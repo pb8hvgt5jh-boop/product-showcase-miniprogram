@@ -1,0 +1,67 @@
+<view class="page">
+
+  <view class="bar">
+    <view class="bar-tip">共 {{cats.length}} 个分类 · 上移下移调整首页展示顺序</view>
+    <view class="btn-gold add-btn" bindtap="add">+ 新增分类</view>
+  </view>
+
+  <view class="state" wx:if="{{loading}}">
+    <view class="spinner"></view>
+    <view class="state-txt">加载中</view>
+  </view>
+
+  <block wx:elif="{{cats.length}}">
+    <view class="item" wx:for="{{cats}}" wx:key="_id">
+      <view class="top">
+        <view class="thumb-wrap" bindtap="cover" data-item="{{item}}">
+          <image class="thumb" src="{{item._cover}}" mode="aspectFill" wx:if="{{item._hasCover}}" />
+          <view class="thumb thumb-ph" wx:else>
+            <view class="ic ic-image"></view>
+            <text class="thumb-txt">传封面</text>
+          </view>
+        </view>
+
+        <view class="info">
+          <view class="name">{{item._name}}</view>
+          <view class="sub">
+            <text class="s-sort">排序 {{item._sort}}</text>
+            <text class="dot">·</text>
+            <text class="{{item._visible ? 's-on' : 's-off'}}">{{item._visible ? '显示中' : '已隐藏'}}</text>
+          </view>
+        </view>
+
+        <view class="move">
+          <view class="mv {{index === 0 ? 'dis' : ''}}" bindtap="move" data-index="{{index}}" data-dir="-1">↑</view>
+          <view class="mv {{index === cats.length - 1 ? 'dis' : ''}}" bindtap="move" data-index="{{index}}" data-dir="1">↓</view>
+        </view>
+      </view>
+
+      <view class="ops">
+        <view class="op" bindtap="rename" data-item="{{item}}">重命名</view>
+        <view class="op" bindtap="cover" data-item="{{item}}">{{item._hasCover ? '换封面' : '加封面'}}</view>
+        <view class="op" bindtap="toggle" data-item="{{item}}">{{item._visible ? '隐藏' : '显示'}}</view>
+        <view class="op danger" bindtap="del" data-item="{{item}}">删除</view>
+      </view>
+    </view>
+  </block>
+
+  <view class="state" wx:else>
+    <view class="empty-mark">空</view>
+    <view class="empty-title">还没有分类</view>
+    <view class="empty-sub">点上方按钮新增第一个分类</view>
+  </view>
+
+  <view class="foot-tip">分类会按此顺序展示在首页「瓶型」大卡片区。</view>
+
+  <ma-dialog
+    show="{{dlg.show}}"
+    mode="{{dlg.mode}}"
+    title="{{dlg.title}}"
+    content="{{dlg.content}}"
+    placeholder="{{dlg.placeholder}}"
+    initial="{{dlg.initial}}"
+    confirmText="{{dlg.confirmText}}"
+    danger="{{dlg.danger}}"
+    bind:confirm="onDlgConfirm"
+    bind:cancel="onDlgCancel" />
+</view>

@@ -1,0 +1,100 @@
+<view class="page">
+
+  <!-- ============ 顶部大图轮播（通栏贴边 750×460） ============ -->
+  <view class="hero">
+    <swiper
+      wx:if="{{settings.hasBanner}}"
+      class="hero-sw"
+      indicator-dots="{{false}}"
+      autoplay="{{true}}"
+      circular="{{true}}"
+      interval="4500"
+      duration="600"
+      bindchange="onBannerChange">
+      <swiper-item wx:for="{{settings.banners}}" wx:key="*this">
+        <image class="hero-img" src="{{item}}" mode="aspectFill" bindtap="previewBanner" data-url="{{item}}" />
+      </swiper-item>
+    </swiper>
+
+    <view class="hero-ph" wx:else>
+      <view class="hero-ph-ring">MA</view>
+      <view class="hero-ph-t">{{settings.siteName || 'MA玻璃瓶大全'}}</view>
+      <view class="hero-ph-s">BOTTLE COLLECTION</view>
+    </view>
+
+    <!-- 自绘指示器：原生圆点无法控制直径 / 间距，故关闭 indicator-dots 手工绘制 -->
+    <view class="hero-dots" wx:if="{{settings.hasBanner && settings.banners.length > 1}}">
+      <view class="hd-dot {{index === bannerIndex ? 'on' : ''}}" wx:for="{{settings.banners}}" wx:key="*this"></view>
+    </view>
+
+    <view class="hero-search" bindtap="goSearch"><view class="mag"></view></view>
+  </view>
+
+  <!-- ============ 瓶型 ============ -->
+  <view class="sec sec-first">
+    <view class="sec-en">Works Exhibition</view>
+    <view class="sec-zh">瓶型</view>
+    <view class="sec-line"></view>
+  </view>
+
+  <!-- 分类通栏大卡片 -->
+  <view class="cat-loading" wx:if="{{catLoading}}">
+    <view class="spinner"></view>
+    <view class="state-txt">加载中</view>
+  </view>
+
+  <view class="cats" wx:elif="{{categories.length}}">
+    <view class="cat" wx:for="{{categories}}" wx:key="_id" bindtap="goCategory" data-name="{{item._name}}">
+      <image class="cat-img" src="{{item._cover}}" mode="aspectFill" wx:if="{{item._hasCover}}" />
+      <view class="cat-img cat-ph" wx:else>
+        <view class="cat-ph-ring">MA</view>
+      </view>
+      <view class="cat-ov"></view>
+      <view class="cat-txt">
+        <view class="cat-name">{{item._name}}</view>
+        <view class="cat-en">Classification</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="state" wx:else>
+    <view class="empty-mark">空</view>
+    <view class="empty-title">暂无分类</view>
+    <view class="empty-sub">请在管理后台添加分类</view>
+  </view>
+
+  <!-- ============ 热门推荐 ============ -->
+  <view class="sec">
+    <view class="sec-en">Popular Selection</view>
+    <view class="sec-zh">热门推荐</view>
+    <view class="sec-line"></view>
+  </view>
+
+  <view class="state" wx:if="{{loading}}">
+    <view class="spinner"></view>
+    <view class="state-txt">加载中</view>
+  </view>
+
+  <view class="p-grid" wx:elif="{{hotProducts.length}}">
+    <view class="p-card" wx:for="{{hotProducts}}" wx:key="_id" bindtap="goDetail" data-id="{{item._id}}">
+      <view class="p-inner">
+        <image class="p-img" src="{{item._cover}}" mode="aspectFill" wx:if="{{item._hasImage}}" />
+        <view class="p-img p-ph" wx:else><text class="p-ph-txt">暂无图片</text></view>
+        <view class="p-body">
+          <view class="p-name">{{item.name}}</view>
+          <view class="p-tags" wx:if="{{item._hasTags}}">
+            <text class="tg" wx:for="{{item._tags}}" wx:for-item="t" wx:key="*this">#{{t}} </text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="state" wx:else>
+    <view class="empty-mark">空</view>
+    <view class="empty-title">产品整理中</view>
+    <view class="empty-sub">敬请期待新品上架</view>
+  </view>
+
+  <view class="foot">{{settings.siteName || 'MA玻璃瓶大全'}} · 产品信息目录</view>
+</view>

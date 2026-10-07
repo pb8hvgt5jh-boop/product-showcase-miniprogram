@@ -1,0 +1,92 @@
+<!-- 加载中 -->
+<view class="state" wx:if="{{loading}}">
+  <view class="spinner"></view>
+  <view class="state-txt">加载中</view>
+</view>
+
+<block wx:elif="{{product}}">
+  <view class="page">
+
+    <!-- ============ 顶部多图轮播 ============ -->
+    <view class="gallery">
+      <swiper
+        wx:if="{{product._hasImage}}"
+        class="sw"
+        indicator-dots="{{product._images.length > 1}}"
+        indicator-color="rgba(255,255,255,0.2)"
+        indicator-active-color="#d4a017"
+        circular="{{true}}"
+        autoplay="{{product._images.length > 1}}"
+        interval="4200"
+        duration="500">
+        <swiper-item wx:for="{{product._images}}" wx:key="*this">
+          <image class="sw-img" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}" />
+        </swiper-item>
+      </swiper>
+
+      <view class="sw-ph" wx:else>
+        <view class="sw-ph-ring">MA</view>
+        <text class="sw-ph-txt">暂无产品图片</text>
+      </view>
+
+      <view class="zoom-tip" wx:if="{{product._images.length}}">点击图片可放大</view>
+    </view>
+
+    <!-- ============ 主信息 ============ -->
+    <view class="card pad">
+      <view class="name">{{product.name}}</view>
+      <view class="tags" wx:if="{{product._hasTags}}">
+        <text class="tg" wx:for="{{product._tags}}" wx:key="*this">#{{item}} </text>
+      </view>
+    </view>
+
+    <!-- ============ 描述 ============ -->
+    <view class="card pad">
+      <view class="ct"><view class="ct-bar"></view><text>产品描述</text></view>
+      <view class="desc">{{product.description}}</view>
+      <view class="desc empty-txt" wx:if="{{!product.description}}">暂无描述</view>
+    </view>
+
+    <!-- ============ 所属分类 ============ -->
+    <view class="card pad">
+      <view class="ct"><view class="ct-bar"></view><text>所属分类</text></view>
+      <view class="cat-chip">{{product._catText}}</view>
+    </view>
+
+    <!-- ============ 联系方式 ============ -->
+    <view class="card pad" wx:if="{{settings.hasContact}}">
+      <view class="ct"><view class="ct-bar"></view><text>联系方式</text></view>
+      <view class="c-row" wx:if="{{settings.contact.phone}}">
+        <view class="ic ic-phone c-ic"></view><text class="c-v">{{settings.contact.phone}}</text>
+      </view>
+      <view class="c-row" wx:if="{{settings.contact.wechat}}">
+        <view class="ic ic-wechat c-ic"></view><text class="c-v">{{settings.contact.wechat}}</text>
+      </view>
+      <view class="c-row" wx:if="{{settings.contact.address}}">
+        <view class="ic ic-loc c-ic"></view><text class="c-v">{{settings.contact.address}}</text>
+      </view>
+    </view>
+
+    <view class="spacer"></view>
+
+    <!-- ============ 底部固定操作栏 ============ -->
+    <view class="bbar">
+      <view class="b-item" bindtap="callPhone">
+        <view class="ic ic-phone b-ic"></view>
+        <text class="b-txt">电话咨询</text>
+      </view>
+      <view class="b-item" bindtap="copyWechat">
+        <view class="ic ic-wechat b-ic"></view>
+        <text class="b-txt">复制微信</text>
+      </view>
+      <button class="b-share" open-type="share">转发给客户</button>
+    </view>
+  </view>
+</block>
+
+<!-- 产品不存在 -->
+<view class="state" wx:else>
+  <view class="empty-mark">空</view>
+  <view class="empty-title">产品不存在或已下架</view>
+  <view class="empty-sub">返回列表看看其它瓶型</view>
+</view>

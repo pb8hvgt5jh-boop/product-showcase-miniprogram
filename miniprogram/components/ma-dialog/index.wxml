@@ -1,0 +1,22 @@
+<view class="ma-mask" wx:if="{{show}}" bindtap="onCancel">
+  <view class="ma-dialog" catchtap="noop">
+    <view class="ma-title" wx:if="{{title}}">{{title}}</view>
+    <view class="ma-content" wx:if="{{content}}">{{content}}</view>
+
+    <input
+      wx:if="{{mode === 'input'}}"
+      class="ma-input"
+      value="{{value}}"
+      placeholder="{{placeholder}}"
+      placeholder-class="ma-ph"
+      focus="{{focus}}"
+      confirm-type="done"
+      bindinput="onInput"
+      bindconfirm="onConfirm" />
+
+    <view class="ma-btns">
+      <view class="ma-btn" bindtap="onCancel">{{cancelText}}</view>
+      <view class="ma-btn ma-primary {{danger ? 'ma-danger' : ''}}" bindtap="onConfirm">{{confirmText}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+<view class="page">
+
+  <!-- 搜索 -->
+  <view class="sbar">
+    <view class="sbox">
+      <view class="mag"></view>
+      <input class="sinput" value="{{keyword}}" placeholder="搜索产品名" placeholder-class="ph-color"
+             confirm-type="search" bindinput="onSearchInput" bindconfirm="onSearchConfirm" />
+      <view class="sclear" wx:if="{{keyword}}" bindtap="clearSearch">×</view>
+    </view>
+  </view>
+
+  <view class="bar">
+    <view class="bar-tip">共 {{products.length}} 款产品</view>
+    <view class="btn-gold add-btn" bindtap="goAdd">+ 新增产品</view>
+  </view>
+
+  <view class="state" wx:if="{{loading}}">
+    <view class="spinner"></view>
+    <view class="state-txt">加载中</view>
+  </view>
+
+  <block wx:elif="{{products.length}}">
+    <view class="item" wx:for="{{products}}" wx:key="_id">
+      <view class="top" bindtap="goEdit" data-id="{{item._id}}">
+        <image class="thumb" src="{{item._cover}}" mode="aspectFill" wx:if="{{item._hasImage}}" />
+        <view class="thumb thumb-ph" wx:else><text class="thumb-txt">无图</text></view>
+        <view class="info">
+          <view class="name">{{item.name}}</view>
+          <view class="sub">
+            <text>{{item._catText}}</text>
+          </view>
+          <view class="badge {{item._statusOn ? 'on' : 'off'}}">{{item._statusOn ? '上架中' : '已下架'}}</view>
+        </view>
+      </view>
+
+      <view class="ops">
+        <view class="op" bindtap="goEdit" data-id="{{item._id}}">编辑</view>
+        <view class="op" bindtap="toggleStatus" data-item="{{item}}">{{item._statusOn ? '下架' : '上架'}}</view>
+        <view class="op danger" bindtap="del" data-item="{{item}}">删除</view>
+      </view>
+    </view>
+  </block>
+
+  <view class="state" wx:else>
+    <view class="empty-mark">空</view>
+    <view class="empty-title">{{keyword ? '没有匹配的产品' : '还没有产品'}}</view>
+    <view class="empty-sub">{{keyword ? '换个关键词试试' : '点上方按钮新增第一款产品'}}</view>
+  </view>
+
+  <ma-dialog
+    show="{{dlg.show}}"
+    mode="{{dlg.mode}}"
+    title="{{dlg.title}}"
+    content="{{dlg.content}}"
+    confirmText="{{dlg.confirmText}}"
+    danger="{{dlg.danger}}"
+    bind:confirm="onDlgConfirm"
+    bind:cancel="onDlgCancel" />
+</view>

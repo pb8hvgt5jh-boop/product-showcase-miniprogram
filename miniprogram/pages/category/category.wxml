@@ -1,0 +1,74 @@
+<view class="page">
+
+  <!-- ============ 左侧固定分类栏 ============ -->
+  <view class="side">
+    <view class="side-top">
+      <view class="side-search" bindtap="goSearch"><view class="mag"></view></view>
+    </view>
+
+    <scroll-view scroll-y class="side-scroll" scroll-into-view="{{'side-' + activeIndex}}" scroll-with-animation>
+      <view
+        wx:for="{{sideList}}"
+        wx:key="id"
+        id="{{'side-' + index}}"
+        class="side-item {{index === activeIndex ? 'active' : ''}}"
+        data-index="{{index}}"
+        bindtap="switchCategory">
+        <view class="side-bar"></view>
+        <text class="side-txt">{{item.name}}</text>
+      </view>
+      <view class="side-pad"></view>
+    </scroll-view>
+  </view>
+
+  <!-- ============ 右侧产品区 ============ -->
+  <view class="main">
+    <view class="sort-bar">
+      <view
+        wx:for="{{sorts}}"
+        wx:key="key"
+        class="sort-item {{item.key === sortType ? 'on' : ''}}"
+        data-type="{{item.key}}"
+        bindtap="changeSort">
+        <text>{{item.label}}</text>
+      </view>
+      <view class="sort-line"></view>
+    </view>
+
+    <scroll-view scroll-y class="list" enable-flex>
+      <!-- 加载中 -->
+      <view class="state" wx:if="{{loading || catLoading}}">
+        <view class="spinner"></view>
+        <view class="state-txt">加载中</view>
+      </view>
+
+      <!-- 产品双列网格 -->
+      <view class="grid" wx:elif="{{products.length}}">
+        <view class="g-card" wx:for="{{products}}" wx:key="_id" bindtap="goDetail" data-id="{{item._id}}">
+          <image class="g-img" src="{{item._cover}}" mode="aspectFill" wx:if="{{item._hasImage}}" />
+          <view class="g-img g-ph" wx:else><text class="g-ph-txt">暂无图片</text></view>
+          <view class="g-body">
+            <view class="g-name">{{item.name}}</view>
+            <view class="g-tags" wx:if="{{item._hasTags}}">
+              <text class="g-tg" wx:for="{{item._tags}}" wx:for-item="t" wx:key="*this">#{{t}} </text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 空数据 -->
+      <view class="state" wx:else>
+        <view class="empty-mark">空</view>
+        <view class="empty-title">该分类暂无产品</view>
+        <view class="empty-sub">换个分类看看其它瓶型</view>
+      </view>
+
+      <view class="list-pad"></view>
+    </scroll-view>
+  </view>
+
+  <!-- ============ 右下角悬浮管理按钮（仅管理员） ============ -->
+  <view class="fab" wx:if="{{isAdmin}}" bindtap="goAdmin">
+    <text class="fab-txt">管理</text>
+  </view>
+</view>

@@ -1,0 +1,117 @@
+<view class="state" wx:if="{{loading}}">
+  <view class="spinner"></view>
+  <view class="state-txt">加载中</view>
+</view>
+
+<!-- 读取失败：停在错误态并暂停保存，避免用空表单覆盖云端已有配置 -->
+<view class="state" wx:elif="{{loadFailed}}">
+  <view class="empty-mark">!</view>
+  <view class="empty-title">设置加载失败</view>
+  <view class="empty-sub">为保护云端数据已暂停保存 · 下拉或点下方按钮重试</view>
+  <view class="btn-ghost retry-btn" bindtap="retry">重新加载</view>
+</view>
+
+<view class="page" wx:else>
+
+  <!-- ============ 品牌信息 ============ -->
+  <view class="card">
+    <view class="card-h">品牌信息</view>
+
+    <view class="label">品牌名称（关于页标题 / 首页兜底名）</view>
+    <input class="field" value="{{form.siteName}}" placeholder="如：MA玻璃瓶大全"
+           placeholder-class="ph-color" data-field="siteName" bindinput="onField" />
+
+    <view class="label">品牌 Logo（关于页顶部展示）</view>
+    <view class="imgs">
+      <view class="img-wrap" wx:if="{{form.logo}}">
+        <image class="img" src="{{form.logo}}" mode="aspectFill" bindtap="logoAction" />
+        <view class="del" catchtap="clearImage" data-field="logo">×</view>
+      </view>
+      <view class="img add" bindtap="logoAction" wx:else>
+        <text class="add-plus">+</text><text class="add-txt">上传 Logo</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 首页轮播图 ============ -->
+  <view class="card">
+    <view class="card-h">首页轮播图 <text class="card-h-sub">最多 {{maxBanners}} 张 · 建议 750×380</text></view>
+    <view class="imgs">
+      <view class="img-wrap wide" wx:for="{{form.banners}}" wx:key="*this">
+        <image class="img wide" src="{{item}}" mode="aspectFill" bindtap="bannerAction" data-index="{{index}}" />
+        <view class="del" catchtap="bannerAction" data-index="{{index}}">×</view>
+        <view class="move-row">
+          <view class="mv {{index === 0 ? 'dis' : ''}}" catchtap="moveBanner" data-index="{{index}}" data-dir="-1">←</view>
+          <view class="mv {{index === form.banners.length - 1 ? 'dis' : ''}}" catchtap="moveBanner" data-index="{{index}}" data-dir="1">→</view>
+        </view>
+      </view>
+      <view class="img add wide" bindtap="addBanner" wx:if="{{form.banners.length < maxBanners}}">
+        <text class="add-plus">+</text><text class="add-txt">加轮播图</text>
+      </view>
+    </view>
+    <view class="hint">点图片可替换 / 删除；← → 调整播放顺序。当前 {{form.banners.length}}/{{maxBanners}} 张</view>
+  </view>
+
+  <!-- ============ 联系方式 ============ -->
+  <view class="card">
+    <view class="card-h">联系方式 <text class="card-h-sub">关于页 · 详情页</text></view>
+
+    <view class="label">电话（客户点"电话咨询"直接拨号）</view>
+    <input class="field" type="number" value="{{form.phone}}" placeholder="如：13800000000"
+           placeholder-class="ph-color" data-field="phone" bindinput="onField" />
+
+    <view class="label">微信号（客户点"复制微信"）</view>
+    <input class="field" value="{{form.wechat}}" placeholder="如：ma-bottle"
+           placeholder-class="ph-color" data-field="wechat" bindinput="onField" />
+
+    <view class="label">所在地区</view>
+    <input class="field" value="{{form.region}}" placeholder="如：江苏省-徐州市-铜山区"
+           placeholder-class="ph-color" data-field="region" bindinput="onField" />
+
+    <view class="label">详细地址</view>
+    <input class="field" value="{{form.address}}" placeholder="如：八段工业园-XX玻璃科技有限公司"
+           placeholder-class="ph-color" data-field="address" bindinput="onField" />
+  </view>
+
+  <!-- ============ 关于页内容 ============ -->
+  <view class="card">
+    <view class="card-h">关于页内容</view>
+
+    <view class="label">品牌语录（大号引号排版，清空即隐藏该区块）</view>
+    <textarea class="field field-area" value="{{form.quote}}"
+              placeholder="如：酒瓶包装设计定制 —— 支持小批量定制"
+              placeholder-class="ph-color" data-field="quote" bindinput="onField" />
+
+    <view class="label">品牌介绍长图（宽度自适应，点图放大）</view>
+    <view class="imgs">
+      <view class="img-wrap wide" wx:if="{{form.introImage}}">
+        <image class="img wide" src="{{form.introImage}}" mode="aspectFill" bindtap="introAction" />
+        <view class="del" catchtap="clearImage" data-field="introImage">×</view>
+      </view>
+      <view class="img add wide" bindtap="introAction" wx:else>
+        <text class="add-plus">+</text><text class="add-txt">上传长图</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 社交链接 ============ -->
+  <view class="card">
+    <view class="card-h">社交链接 <text class="card-h-sub">关于页底部圆形按钮</text></view>
+
+    <view class="soc-row" wx:for="{{socials}}" wx:key="_k">
+      <view class="soc-fields">
+        <input class="field soc-in" value="{{item.name}}" placeholder="名称，如：小红书"
+               placeholder-class="ph-color" data-index="{{index}}" data-field="name" bindinput="onSocial" />
+        <input class="field soc-in" value="{{item.value}}" placeholder="内容 / 账号，点击复制"
+               placeholder-class="ph-color" data-index="{{index}}" data-field="value" bindinput="onSocial" />
+      </view>
+      <view class="soc-del" bindtap="delSocial" data-index="{{index}}">删除</view>
+    </view>
+
+    <view class="soc-empty" wx:if="{{!socials.length}}">未添加社交链接时，关于页不显示该区块</view>
+    <view class="btn-ghost soc-add" bindtap="addSocial">+ 添加社交链接</view>
+  </view>
+
+  <view class="btn-gold save {{saving ? 'disabled' : ''}}" bindtap="save">{{saving ? '保存中…' : '保存并发布'}}</view>
+  <view class="tip2">保存后客户刷新小程序即可看到，无需重新提交审核。</view>
+</view>

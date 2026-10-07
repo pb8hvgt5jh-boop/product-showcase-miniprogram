@@ -1,0 +1,87 @@
+<view class="page">
+
+  <!-- ============ 顶部搜索框 ============ -->
+  <view class="sbar">
+    <view class="sbox">
+      <view class="mag"></view>
+      <input
+        class="sinput"
+        value="{{keyword}}"
+        placeholder="搜索瓶型 / 规格 / 关键词"
+        placeholder-class="ph-color"
+        confirm-type="search"
+        focus="{{autoFocus}}"
+        bindinput="onInput"
+        bindconfirm="doSearch" />
+      <view class="sclear" wx:if="{{keyword}}" bindtap="onClear">×</view>
+    </view>
+    <view class="sgo" bindtap="doSearch">搜索</view>
+  </view>
+
+  <!-- ============ 未搜索：历史 + 热门 ============ -->
+  <block wx:if="{{!searched}}">
+    <view class="blk" wx:if="{{history.length}}">
+      <view class="blk-head">
+        <text class="blk-title">搜索历史</text>
+        <text class="blk-clear" bindtap="clearHistory">清空</text>
+      </view>
+      <view class="chips">
+        <view class="chip" wx:for="{{history}}" wx:key="*this" bindtap="searchAgain" data-kw="{{item}}">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="blk" wx:if="{{hotWords.length}}">
+      <view class="blk-head"><text class="blk-title">热门瓶型</text></view>
+      <view class="chips">
+        <view class="chip hot" wx:for="{{hotWords}}" wx:key="*this" bindtap="searchAgain" data-kw="{{item}}">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="state" wx:if="{{!history.length && !hotWords.length}}">
+      <view class="empty-mark">搜</view>
+      <view class="empty-title">搜一搜你想找的瓶型</view>
+      <view class="empty-sub">支持按名称、分类、标签检索</view>
+    </view>
+  </block>
+
+  <!-- ============ 搜索结果 ============ -->
+  <block wx:else>
+    <view class="sort-bar">
+      <view
+        wx:for="{{sorts}}"
+        wx:key="key"
+        class="sort-item {{item.key === sortType ? 'on' : ''}}"
+        data-type="{{item.key}}"
+        bindtap="changeSort">{{item.label}}</view>
+      <text class="sort-count" wx:if="{{!searching}}">共 {{resultCount}} 款</text>
+    </view>
+
+    <view class="state" wx:if="{{searching}}">
+      <view class="spinner"></view>
+      <view class="state-txt">搜索中</view>
+    </view>
+
+    <view class="p-grid" wx:elif="{{results.length}}">
+      <view class="p-card" wx:for="{{results}}" wx:key="_id" bindtap="goDetail" data-id="{{item._id}}">
+        <view class="p-inner">
+          <image class="p-img" src="{{item._cover}}" mode="aspectFill" wx:if="{{item._hasImage}}" />
+          <view class="p-img p-ph" wx:else><text class="p-ph-txt">暂无图片</text></view>
+          <view class="p-body">
+            <view class="p-name">{{item.name}}</view>
+            <view class="p-tags" wx:if="{{item._hasTags}}">
+              <text class="tg" wx:for="{{item._tags}}" wx:for-item="t" wx:key="*this">#{{t}} </text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="state" wx:else>
+      <view class="empty-mark">空</view>
+      <view class="empty-title">没有找到相关产品</view>
+      <view class="empty-sub">换个关键词试试</view>
+    </view>
+  </block>
+
+  <view class="safe-bottom"></view>
+</view>
